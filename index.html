@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Blind's Eye — Science Fair 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:        #f5f0e8;
+      --surface:   #efe9dd;
+      --card:      #faf7f2;
+      --border:    #ddd5c3;
+      --brown:     #7a6248;
+      --brown-dk:  #4e3d2c;
+      --accent:    #b07d4f;
+      --arduino:   #4a7c6f;
+      --text:      #2e261c;
+      --muted:     #8a7a68;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 22px 48px;
+      border-bottom: 1px solid var(--border);
+      background: var(--card);
+    }
+
+    .nav-logo {
+      font-family: 'Lora', serif;
+      font-size: 1rem;
+      color: var(--brown-dk);
+      font-style: italic;
+    }
+
+    .nav-tag {
+      font-size: 0.75rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+    }
+
+    /* ── HERO ── */
+    header {
+      position: relative;
+      z-index: 1;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 100px 32px 80px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 24px;
+    }
+
+    header h1 {
+      font-family: 'Lora', serif;
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 600;
+      line-height: 1.2;
+      color: var(--brown-dk);
+      margin-bottom: 20px;
+    }
+
+    header h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 540px;
+      margin: 0 auto 48px;
+    }
+
+    .team {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--card);
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .team-member {
+      flex: 1;
+      padding: 16px 20px;
+      text-align: center;
+      border-right: 1px solid var(--border);
+    }
+    .team-member:last-child { border-right: none; }
+
+    .avatar {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      margin: 0 auto 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 500; font-size: 0.85rem;
+      font-family: 'Lora', serif;
+    }
+
+    .av-k { background: #e8ddd0; color: var(--brown); }
+    .av-m { background: #d4e4e0; color: var(--arduino); }
+
+    .team-member strong { display: block; font-size: 0.9rem; font-weight: 500; }
+    .team-member span   { font-size: 0.72rem; color: var(--muted); }
+
+    /* ── DIVIDER ── */
+    .divider {
+      max-width: 860px;
+      margin: 0 auto;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── SECTION ── */
+    section {
+      position: relative;
+      z-index: 1;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 72px 32px;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-family: 'Lora', serif;
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      font-weight: 600;
+      color: var(--brown-dk);
+      margin-bottom: 20px;
+      line-height: 1.25;
+    }
+
+    p {
+      color: var(--muted);
+      font-size: 0.97rem;
+      margin-bottom: 14px;
+      max-width: 660px;
+    }
+    p:last-child { margin-bottom: 0; }
+
+    /* ── Q&H CARDS ── */
+    .qh-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 28px;
+    }
+
+    .qh-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px;
+    }
+
+    .qh-card .lbl {
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    .qh-card p { color: var(--text); max-width: unset; margin: 0; font-size: 0.97rem; }
+
+    /* ── VARIABLES ── */
+    .var-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .var-chip {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px 22px;
+    }
+
+    .var-chip .vtype {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .var-chip p { color: var(--text); font-size: 0.9rem; max-width: unset; margin: 0; }
+
+    /* ── PROTOTYPES ── */
+
+
+    .stick-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stick-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+    }
+
+    .card-arduino::before { background: var(--arduino); }
+
+    .stick-label {
+      display: inline-block;
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 100px;
+      margin-bottom: 14px;
+    }
+
+    .card-arduino .stick-label { background: #d5e8e4; color: var(--arduino); }
+
+    .stick-card h3 {
+      font-family: 'Lora', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--brown-dk);
+      margin-bottom: 4px;
+    }
+
+    .by {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .stick-card p { color: var(--muted); font-size: 0.9rem; max-width: unset; }
+
+    .img-placeholder {
+      width: 100%;
+      height: 180px;
+      background: var(--surface);
+      border: 1px dashed var(--border);
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin: 18px 0;
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    .img-placeholder .icon { font-size: 1.4rem; opacity: 0.5; }
+
+    .issues-list {
+      list-style: none;
+      margin-top: 14px;
+      border-top: 1px solid var(--border);
+      padding-top: 14px;
+    }
+
+    .issues-list li {
+      font-size: 0.85rem;
+      color: var(--muted);
+      padding: 5px 0 5px 18px;
+      position: relative;
+      border-bottom: 1px solid var(--border);
+    }
+    .issues-list li:last-child { border-bottom: none; }
+
+    .issues-list li::before {
+      content: '·';
+      position: absolute; left: 4px;
+      font-weight: 700;
+    }
+
+    .card-arduino .issues-list li::before { color: var(--arduino); }
+
+    /* ── EXPERIMENTS ── */
+    .exp-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .exp-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 22px 26px;
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+    }
+
+    .exp-num {
+      font-family: 'Lora', serif;
+      font-size: 1.6rem;
+      font-style: italic;
+      color: var(--border);
+      line-height: 1;
+      min-width: 32px;
+    }
+
+    .exp-content h4 {
+      font-size: 0.97rem;
+      font-weight: 500;
+      color: var(--brown-dk);
+      margin-bottom: 4px;
+    }
+
+    .exp-content p { font-size: 0.87rem; margin: 0; }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding: 36px 24px;
+      background: var(--card);
+    }
+
+    footer p {
+      font-size: 0.78rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      max-width: unset;
+      margin: 0;
+    }
+
+    footer span { color: var(--accent); }
+
+    /* ── REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 620px) {
+      nav { padding: 16px 24px; }
+      .qh-grid, .var-row { grid-template-columns: 1fr; }
+      .team { flex-direction: column; max-width: 260px; }
+      .team-member { border-right: none; border-bottom: 1px solid var(--border); }
+      .team-member:last-child { border-bottom: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">The Blind's Eye</div>
+    <div class="nav-tag">Science Fair · 2026</div>
+  </nav>
+
+  <header class="reveal">
+    <div class="eyebrow">Science Fair Project</div>
+    <h1>The Blind's Eye<br><em>Walking Stick</em></h1>
+    <p class="hero-sub">A smart walking stick that uses vibration and a buzzer to help visually impaired users navigate obstacles.</p>
+
+    <div class="team">
+      <div class="team-member">
+        <div class="avatar av-k">K</div>
+        <strong>Karim</strong>
+        <span>Website</span>
+      </div>
+
+      <div class="team-member">
+        <div class="avatar av-m">M</div>
+        <strong>Mahmoud</strong>
+        <span>Arduino Stick</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="divider"></div>
+  <section class="reveal">
+    <div class="section-label">Background</div>
+    <h2>About the Project</h2>
+    <p>Each of us took on a different role. Karim built this website and Mahmoud designed and built an Arduino-powered walking stick that uses both vibration and a buzzer to alert the user when an obstacle is detected.</p>
+    <p>Our goal is to show how vibration and a buzzer can effectively guide visually impaired users through obstacles in everyday environments.</p>
+  </section>
+
+  <div class="divider"></div>
+  <section class="reveal">
+    <div class="section-label">Research</div>
+    <h2>Question &amp; Hypothesis</h2>
+    <div class="qh-grid">
+      <div class="qh-card">
+        <div class="lbl">Testable Question</div>
+        <p>Can vibration and buzzer feedback effectively guide a visually impaired person around obstacles?</p>
+      </div>
+      <div class="qh-card">
+        <div class="lbl">Our Hypothesis</div>
+        <p>We believe vibration is a reliable feedback method because it works regardless of noise levels — you can always feel it even in a crowded environment.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+  <section class="reveal">
+    <div class="section-label">Methodology</div>
+    <h2>Variables</h2>
+    <div class="var-row">
+      <div class="var-chip">
+        <div class="vtype">Independent</div>
+        <p>Type of feedback component</p>
+      </div>
+      <div class="var-chip">
+        <div class="vtype">Dependent</div>
+        <p>Time taken to navigate past all obstacles</p>
+      </div>
+      <div class="var-chip">
+        <div class="vtype">Controlled</div>
+        <p>Same area · same person · same obstacle layout</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+  <section class="reveal">
+    <div class="section-label">Experiment</div>
+    <h2>Busy Environment</h2>
+    <p>Multiple obstacles are placed in front of the user in a random, irregular path that is deliberately difficult to navigate. The obstacles are not in a straight line — they are scattered in unpredictable positions, forcing the user to constantly change direction. The walking stick must detect each obstacle in time and alert the user through vibration and a buzzer so they can avoid it without seeing it.</p>
+      
+  </section>
+
+  <footer>
+    <p>Science Fair 2026 &nbsp;·&nbsp; <span>Karim &nbsp;·&nbsp; Mahmoud</span></p>
+  </footer>
+
+  <script>
+    const els = document.querySelectorAll('.reveal');
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+    }, { threshold: 0.08 });
+    els.forEach(el => obs.observe(el));
+  </script>
+</body>
+</html>
